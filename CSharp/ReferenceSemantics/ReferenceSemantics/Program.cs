@@ -1,18 +1,28 @@
 ﻿using System;
 
+using System.Linq;
+
 namespace ReferenceSemantics
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            var vd = new ValueTypeOnly(42);
+            int[] arr = Enumerable.Range(0, 1000).ToArray();
+            Span<int> span1 = new Span<int>(arr);
+            Span<int> slice1 = span1.Slice(40, 10);
+            string s = "this is a long string";
+            ReadOnlySpan<char> span2 = s.AsSpan();
+            ReadOnlySpan<char> slice2 = span2.Slice(5, 10);
+
+
             int answer = 42;
             PassByValue(answer);
             Console.WriteLine(answer);
             PassByRef1(ref answer);
             Console.WriteLine(answer);
-            PassUsingIn(answer);
+            PassByUsingIn(answer);
             Console.WriteLine(answer);
 
             UseRef1();
@@ -30,7 +40,7 @@ namespace ReferenceSemantics
             x = 43;
         }
 
-        private static void PassUsingIn(in int x)
+        private static void PassByUsingIn(in int x)
         {
             Console.WriteLine($"received {x}");
             // x = 43; // can't change! - readonly
