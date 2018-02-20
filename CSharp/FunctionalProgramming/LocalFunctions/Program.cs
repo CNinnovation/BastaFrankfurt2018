@@ -55,6 +55,18 @@ namespace LocalFunctions
             int add(int x, int y) => x + y + z;
         }
 
+        private static void SortSample()
+        {
+            Console.WriteLine(nameof(SortSample));
+            int[] elements = { 7, 3, 4, 9, 11, 99, 22, 3, 5, 7, 12, 14, 97, 33, 343 };
+            Algorithms.QuickSort(elements);
+            foreach (var item in elements)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+        }
+
         private static void YieldSampleSimple()
         {
 #line 1000
@@ -72,18 +84,6 @@ namespace LocalFunctions
             catch (ArgumentNullException ex)
             {
                 Console.WriteLine(ex);
-            }
-            Console.WriteLine();
-        }
-
-        private static void SortSample()
-        {
-            Console.WriteLine(nameof(SortSample));
-            int[] elements = { 7, 3, 4, 9, 11, 99, 22, 3, 5, 7, 12, 14, 97, 33, 343 };
-            Algorithms.QuickSort(elements);
-            foreach (var item in elements)
-            {
-                Console.WriteLine(item);
             }
             Console.WriteLine();
         }
